@@ -36,6 +36,8 @@ A complete and official guide is provided in the following link to setup Arduino
 
 In order to be able to compile and run this project on the MicroMod nRF52840 Processor, you will need to install the version `1.3.1` of this deprecated package. Sparkfun is working on a fix, the official guide should be update once done.
 
+Do not forget to restard your Arduino IDE after having added the board in the application folder.
+
 ### Run the data-forwarder-example sketch
 
 To make sure the board works, test the `data-forwarder-example` sketch present in this repository. Just open the `.ino` file or copy past the following code in a new sketch:
@@ -104,6 +106,60 @@ You can now leave your board connected, we will push the some of data to Edge Im
 ## Collecting data
 
 If you do not have an Edge Impulse account yet, start by creating an account on [Edge Impulse Studio](https://studio.edgeimpulse.com) and create a project.
+
+You also need to install [Edge Impulse CLI](https://docs.edgeimpulse.com/docs/cli-installation) tools to be able to use the `edge-impulse-data-forwarder`.
+
+### API Keys
+
+On your `Dashboard` view of your Edge Impulse project, navgate to the `Keys` tab and create a new API Key for your CLI:
+
+![studio-create-api-key](assets/studio-create-api-key.png)
+
+Copy your new API key, it looks like something similar to `ei_...`.
+
+### Connect the CLI to your Serial port
+
+Quit the Serial Monitor from your Arduino IDE if still open.
+
+Open a new terminal and run `edge-impulse-data-forwarder --clean --frequency 50Hz`. Follow the prompt to fill the required information:
+
+```
+$> edge-impulse-data-forwarder --clean --frequency 50Hz
+Edge Impulse data forwarder v1.13.4
+? What is your user name or e-mail address (edgeimpulse.com)? louis-demo
+? What is your password? [hidden]
+Endpoints:
+    Websocket: wss://remote-mgmt.edgeimpulse.com
+    API:       https://studio.edgeimpulse.com/v1
+    Ingestion: https://ingestion.edgeimpulse.com
+
+[SER] Connecting to /dev/tty.usbmodem142301
+[SER] Serial is connected (CB:60:AF:81:EA:4A:AA:82)
+[WS ] Connecting to wss://remote-mgmt.edgeimpulse.com
+[WS ] Connected to wss://remote-mgmt.edgeimpulse.com
+
+? To which project do you want to connect this device? (Use arrow keys)
+...
+❯ Louis (Demo) / Fitness classifier 
+...
+[SER] Detecting data frequency...
+[SER] Detected data frequency: 51Hz
+? 3 sensor axes detected (example values: [-77,-84,-87]). What do you want to call them? Separate the names with ',': accX, accY, accZ
+[SER] Overriding frequency to 50Hz (via --frequency)
+? What name do you want to give this device? MicroMod nRF52840
+[WS ] Device "MicroMod nRF52840" is now connected to project "Fitness classifier"
+[WS ] Go to https://studio.edgeimpulse.com/studio/XXXXX/acquisition/training to build your machine learning model!
+
+```
+
+Go back to Edge Impulse Studio and naviagte to the `Devices` view.
+Your device is now connected:
+
+![studio-devices](assets/studio-devices.png)
+
+To start collecting some data, go to the `Data acquisition` view:
+
+![studio-collect-data-1](assets/studio-collect-data-1.png)
 
 
 
