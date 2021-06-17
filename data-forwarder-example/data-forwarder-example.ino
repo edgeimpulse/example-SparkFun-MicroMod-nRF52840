@@ -6,7 +6,7 @@ SPARKFUN_LIS2DH12 accel;       //Create instance
 #define FREQUENCY_HZ        62.5
 #define INTERVAL_MS         (1000 / (FREQUENCY_HZ + 1))
 
-uint64_t last_interval = 0;
+static unsigned long last_interval = 0;
 
 void setup() {
     Serial.begin(115200);

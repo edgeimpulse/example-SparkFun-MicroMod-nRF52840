@@ -28,8 +28,11 @@ SPARKFUN_LIS2DH12 accel;       //Create instance
 /* Include Edge Impulse Library -------------------------------------------------------- 
  * Modify the following line according to your project name
  * Do not forget to import the library using "Sketch">"Include Library">"Add .ZIP Library..."
+ * You can find one library version in this repository under ei-library/ei-fitness-classifier-arduino.zip 
+ * that has been generated from this public project https://studio.edgeimpulse.com/public/36037/latest
  */
-#include <Fitness_classifier_-_v2_inferencing.h>
+ #include <Fitness_classifier_inferencing.h>
+
 
 /* Private variables ------------------------------------------------------- */
 static bool debug_nn = false; // Set this to true to see e.g. features generated from the raw signal
