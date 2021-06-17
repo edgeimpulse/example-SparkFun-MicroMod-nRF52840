@@ -34,7 +34,7 @@ A complete and official guide is provided in the following link to setup Arduino
 
 ![board-manager-mbded-1.3.1](assets/board-manager-mbded-1.3.1.png)
 
-In order to be able to compile and run this project on the MicroMod nRF52840 Processor, you will need to install the version `1.3.1` of this deprecated package. Sparkfun is working on a fix, the official guide should be update once done.
+In order to be able to compile and run this project on the MicroMod nRF52840 Processor, you will need to install the **version `1.3.1`** of this deprecated package. Sparkfun is working on a fix, the official guide should be update once done.
 
 Do not forget to restard your Arduino IDE after having added the board in the application folder.
 
@@ -184,16 +184,51 @@ To start collecting some data, go to the `Data acquisition` view, make sure your
 
 🤫 *Disclamer: I reject any responsibility for the quality of my jumping jacks. This scene was not made by professionals, please try to reproduce it better, much better!*
 
-Do this process for each label you want to classify. Do not forget to add some samples in your training set
-Once you have collected enough data
-
-
+Do this process for each label you want to classify. Do not forget to add some samples in your training set by navigating to the `Test data` on the upper left corner of the `Data acquisition` view.
 
 ## Train your Machine Learning Model
 
+Once you have collected enough data, navigate the the `Create Impulse` view:
+
+![studio-create-impulse](assets/studio-create-impulse.png)
+
+Add a **Spectral Analysis** DSP Block and a **Neural Network** Learning Block.
+
+Click on `Save Impulse` and go to the `Spectral features` view:
+
+![studio-spectral-features](assets/studio-spectral-features.png)
+
+Here, just change the `Scale axis` value to `0.01`, it will help the quantized version of your Neural Network to get a better accuracy.
+Click on `Save parameters` at the bottom of this page. 
+
+You should have been redirected to the `Generate feature` tab.
+
+Click on `Generate feature`, wait few seconds and you should see 4 well separated clusters:
+
+![studio-generate-features](assets/studio-generate-features.png)
+
+If so, this is good! It means your Neural Network will more likely be able to classify your samples easily.
+
+Now navigate to the `NN Classifier` view and click on `Start Training`. With the default parameters, we obtained a **99.4% accuracy** with a model that can run the inference in 1 ms., using 1.5KB of RAM and 15.5KB of ROM on the nRF52840
+
+![studio-nn-classifier](assets/studio-nn-classifier.png)
+
+We tried a slightly modified architecture to see if we could achieve some better results:
+
+![studio-nn-classifier-2](assets/studio-nn-classifier-2.png)
+
+As you can see, we reached a **99.4% accuracy**, however, this model use 1.8KB of RAM. It is completely up to you to choose which model to use, in this case both can easily run on the target.
+
+Now we are satisfied with the Neural Network model, we can test this model on data that have been unknown to the Neural Network. Go to the `Model testing` tab and click on `Classify all`:
+
+![studio-model-testing](assets/studio-model-testing.png)
+
+I guess we can validate this model and test it in real conditions!
 
 
 ## Run your inference on the target
+
+
 
 
 ## Resources
