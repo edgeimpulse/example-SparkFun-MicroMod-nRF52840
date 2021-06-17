@@ -75,7 +75,7 @@ void loop() {
         Serial.print('\t');
         Serial.print(accel.getY());
         Serial.print('\t');
-        Serial.println(accel.getY());   
+        Serial.println(accel.getZ());   
     }
 }
 ```
