@@ -34,7 +34,7 @@ A complete and official guide is provided in the following link to setup Arduino
 
 ![board-manager-mbded-1.3.1](assets/board-manager-mbded-1.3.1.png)
 
-In order to be able to compile and run this project on the MicroMod nRF52840 Processor, you will need to install the **version `1.3.1`** of this deprecated package. Sparkfun is working on a fix, the official guide should be update once done.
+In order to be able to compile and run this project on the MicroMod nRF52840 Processor, you will need to install the **specific version `1.3.1`** of the Arduino Mbed OS Board, which is now deprecated. Sparkfun is working on a fix, the official guide should be update once done.
 
 Do not forget to restard your Arduino IDE after having added the board in the application folder.
 
@@ -130,19 +130,15 @@ If you do not have an Edge Impulse account yet, start by creating an account on 
 
 You also need to install [Edge Impulse CLI](https://docs.edgeimpulse.com/docs/cli-installation) tools to be able to use the `edge-impulse-data-forwarder`.
 
-### API Keys
-
-On your `Dashboard` view of your Edge Impulse project, navgate to the `Keys` tab and create a new API Key for your CLI:
-
-![studio-create-api-key](assets/studio-create-api-key.png)
-
-Copy your new API key, it looks like something similar to `ei_...`.
-
 ### Connect the CLI to your Serial port
 
 Quit the Serial Monitor from your Arduino IDE if still open.
 
-Open a new terminal and run `edge-impulse-data-forwarder --clean --frequency 50Hz`. Follow the prompt to fill the required information:
+Open a new terminal and run `edge-impulse-data-forwarder --clean`. 
+
+Note that the frequency will be detected automatically but you can overide it by adding the `--frequency 50` flag for example if you have a different value in your arduino sketch.
+
+Follow the prompt and fill the required information:
 
 ```
 $> edge-impulse-data-forwarder --clean --frequency 50Hz
@@ -245,28 +241,6 @@ Include the generated library in the Arduino IDE and select the .zip file you ha
 Open the `micromod-nrf52840_accelerometer.ino` sketch from this Github repository or create a new Arduino sketch and copy past the following code:
 
 ```
-/* Edge Impulse examples
- * Copyright (c) 2021 EdgeImpulse Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 /* Includes ---------------------------------------------------------------- */
 #include <Wire.h>
 #include "SparkFun_LIS2DH12.h" //Click here to get the library: http://librarymanager/All#SparkFun_LIS2DH12
@@ -414,7 +388,7 @@ The name of the library may differ from the provided example, just delete this l
 
 ![ide-include-library-2](assets/ide-include-library-2.png)
 
-You can now Compile and upload the sketch on the target (using the ➡️ button on the upper left corner):
+You can now compile and upload the sketch on the target (using the ➡️ button on the upper left corner):
 
 ![inference](assets/inference.gif)
 
@@ -422,7 +396,7 @@ You can now Compile and upload the sketch on the target (using the ➡️ button
 
 ## Resources
 
-You reproduce this project using:
+You can reproduce this project using:
 
 - The public project on Edge Impulse Studio: [https://studio.edgeimpulse.com/public/36037/latest](https://studio.edgeimpulse.com/public/36037/latest)
 
