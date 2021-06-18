@@ -51,11 +51,11 @@ To open the Arduino application folder directly from the Arduino IDE, open the `
 *If the `package` folder is not yet present in your Arduino application folder, install the `[DEPRECATED] Arduino Mbed OS Boards` board from `Tools -> Board -> Board Manager` as shown just before and replace the `mbed` folder with the one present in this github repository.*
 
 
-Do not forget to restard your Arduino IDE after having added the board in the application folder.
+Do not forget to restart your Arduino IDE after having added the board in the application folder.
 
 ### Run the data-forwarder-example sketch
 
-To make sure the board works, test the `data-forwarder-example` sketch present in this repository. Just open the `.ino` file or copy past the following code in a new sketch:
+To make sure the board works, test the `data-forwarder-example` sketch present in this repository under `arduino-examples/data-forwarder-example/`. Just open the `.ino` file or copy past the following code in a new sketch:
 
 ```
 #include <Wire.h>
@@ -132,7 +132,7 @@ Compile and upload the sketch (using the ➡️ button on the upper left corner)
 
 ![ide-upload-successful](assets/ide-upload-successful.png)
 
-**Note to Windows users:** *you might see some warning during the compiliation, this is not an issue, you can keep going and your sketch will run correcty:*
+**Note to Windows users:** *you might see some warnings during the compiliation, this is not an issue, you can keep going and your sketch will run correcty:*
 
 ![ide-done-compiling-windows](assets/ide-done-compiling-windows.png)
 
