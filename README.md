@@ -24,7 +24,7 @@ Download the lastest Arduino version: [https://www.arduino.cc/en/main/software](
 
 ![dl arduino ide](assets/dl-arduino-ide.png)
 
-We have been testing with Arduino 1.8.13. It should work also with the current latest Arduino IDE version (1.8.15). However, we do not recommend to use the Arduino IDE 2.0 beta at the moment as it has some breaking changes.
+We have been testing this project with Arduino 1.8.13 and 1.8.15 on macOS Big Sur and 1.8.15 on Windows 10. We do not recommend to use the Arduino IDE 2.0 beta at the moment as it has some breaking changes.
 
 ### Adding the MicroMod nRF52840 Board to Arduino IDE
 
@@ -35,6 +35,21 @@ A complete and official guide is provided in the following link to setup Arduino
 ![board-manager-mbded-1.3.1](assets/board-manager-mbded-1.3.1.png)
 
 In order to be able to compile and run this project on the MicroMod nRF52840 Processor, you will need to install the **specific version `1.3.1`** of the Arduino Mbed OS Board, which is now deprecated. Sparkfun is working on a fix, the official guide should be update once done.
+
+If you are not sure how to add the board manually, you can copy-paste the `mbed` folder present in this repository under `arduino-board-mbed-os-v1.3.1/` and add it to your Arduino application folder under:
+
+- Windows: `%LOCALAPPDATA%\Arduino15\packages\arduino\hardware\mbed\`
+- OSX: `~/Library/Arduino15/packages/arduino/hardware/mbed/`
+- Linux: `~/.arduino15/packages/arduino/hardware/mbed/`
+
+To open the Arduino application folder directly from the Arduino IDE, open the `Preferences` and click on the link looking like `User/.../Library/Arduino15/preferences.txt`:
+
+![ide-preferences](assets/ide-preferences.png)
+
+![finder-mbed](assets/finder-mbed.png)
+
+*If the `package` folder is not yet present in your Arduino application folder, install the `[DEPRECATED] Arduino Mbed OS Boards` board from `Tools -> Board -> Board Manager` as shown just before and replace the `mbed` folder with the one present in this github repository.*
+
 
 Do not forget to restard your Arduino IDE after having added the board in the application folder.
 
@@ -116,6 +131,10 @@ Select the Port (note that it is recognized as the Arduino Nano 33 BLE in my env
 Compile and upload the sketch (using the ➡️ button on the upper left corner). You should get the following results when done:
 
 ![ide-upload-successful](assets/ide-upload-successful.png)
+
+**Note to Windows users:** *you might see some warning during the compiliation, this is not an issue, you can keep going and your sketch will run correcty:*
+
+![ide-done-compiling-windows](assets/ide-done-compiling-windows.png)
 
 Open the serial monitor and set the baudrate to `115200`. You will see the three axis values displayed as follow:
 

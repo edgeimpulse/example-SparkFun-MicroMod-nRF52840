@@ -1,0 +1,189 @@
+##############################################################
+
+envie_m7.name=Arduino Portenta H7 (M7 core)
+envie_m7.build.core=arduino
+envie_m7.build.crossprefix=arm-none-eabi-
+envie_m7.build.compiler_path={runtime.tools.arm-none-eabi-gcc.path}/bin/
+
+envie_m7.build.variant=PORTENTA_H7_M7
+envie_m7.build.mcu=cortex-m7
+envie_m7.build.fpu=fpv5-d16
+envie_m7.build.float-abi=softfp
+envie_m7.build.extra_flags=
+envie_m7.build.architecture=cortex-m7
+envie_m7.build.board=PORTENTA_H7_M7
+envie_m7.build.ldscript=linker_script.ld
+envie_m7.compiler.mbed.arch.define=
+envie_m7.compiler.mbed.defines={build.variant.path}/defines.txt
+envie_m7.compiler.mbed.ldflags={build.variant.path}/ldflags.txt
+envie_m7.compiler.mbed.cflags={build.variant.path}/cflags.txt
+envie_m7.compiler.mbed.cxxflags={build.variant.path}/cxxflags.txt
+envie_m7.compiler.mbed.includes={build.variant.path}/includes.txt
+envie_m7.compiler.mbed.extra_ldflags=-lstdc++ -lsupc++ -lm -lc -lgcc -lnosys
+envie_m7.compiler.mbed="{build.variant.path}/libs/libmbed.a"
+envie_m7.vid.0=0x2341
+envie_m7.pid.0=0x025b
+envie_m7.vid.1=0x2341
+envie_m7.pid.1=0x035b
+envie_m7.vid.2=0x2341
+envie_m7.pid.2=0x045b
+
+envie_m7.upload.tool=dfu-util
+envie_m7.upload.protocol=
+envie_m7.upload.vid=0x2341
+envie_m7.upload.pid=0x035b
+envie_m7.upload.address=0x08040000
+envie_m7.upload.interface=0
+envie_m7.upload.use_1200bps_touch=true
+envie_m7.upload.wait_for_upload_port=true
+envie_m7.upload.native_usb=true
+envie_m7.upload.maximum_size=786432
+envie_m7.upload.maximum_data_size=523624
+
+envie_m7.debug.tool=gdb
+envie_m7.bootloader.tool=openocd
+envie_m7.bootloader.config=-f target/stm32h7x_dual_bank.cfg
+envie_m7.bootloader.programmer=-f interface/stlink.cfg
+envie_m7.bootloader.extra_action.preflash=stm32h7x option_write 0 0x01c 0xb86aaf0
+envie_m7.bootloader.file=PORTENTA_H7/portentah7_bootloader_mbed_hs_v2.elf
+
+envie_m7_thread_debug.name=Arduino Portenta H7 (ThreadDebug)
+envie_m7_thread_debug.vid.0=0x2341
+envie_m7_thread_debug.pid.0=0x025B
+envie_m7_thread_debug.descriptor.0=DebugPort
+envie_m7_thread_debug.hide=true
+envie_m7_thread_debug.build.board=PORTENTA_H7_M7
+
+##############################################################
+
+envie_m4.name=Arduino Portenta H7 (M4 core)
+envie_m4.build.core=arduino
+envie_m4.build.crossprefix=arm-none-eabi-
+envie_m4.build.compiler_path={runtime.tools.arm-none-eabi-gcc.path}/bin/
+
+envie_m4.build.variant=PORTENTA_H7_M4
+envie_m4.build.mcu=cortex-m4
+envie_m4.build.fpu=fpv4-sp-d16
+envie_m4.build.float-abi=softfp
+envie_m4.build.extra_flags=
+envie_m4.build.architecture=cortex-m4
+envie_m4.build.board=PORTENTA_H7_M4
+envie_m4.build.ldscript=linker_script.ld
+envie_m4.compiler.mbed.arch.define=
+envie_m4.compiler.mbed.defines={build.variant.path}/defines.txt
+envie_m4.compiler.mbed.ldflags={build.variant.path}/ldflags.txt
+envie_m4.compiler.mbed.cflags={build.variant.path}/cflags.txt
+envie_m4.compiler.mbed.cxxflags={build.variant.path}/cxxflags.txt
+envie_m4.compiler.mbed.includes={build.variant.path}/includes.txt
+envie_m4.compiler.mbed.extra_ldflags=-lstdc++ -lsupc++ -lm -lc -lgcc -lnosys
+envie_m4.compiler.mbed="{build.variant.path}/libs/libmbed.a"
+#envie_m4.compiler.mbed="{build.variant.path}/libs/libmbed.a" "{build.variant.path}/libs/libopenamp.a"
+envie_m4.vid.0=0x2341
+envie_m4.pid.0=0x005b
+envie_m4.build.vid=0x2341
+envie_m4.build.pid=0x005b
+
+envie_m4.upload.tool=dfu-util
+envie_m4.upload.vid=0x2341
+envie_m4.upload.pid=0x035b
+envie_m4.upload.protocol=
+envie_m4.upload.address=0x08100000
+envie_m4.upload.interface=0
+envie_m4.upload.use_1200bps_touch=true
+envie_m4.upload.wait_for_upload_port=true
+envie_m4.upload.native_usb=true
+envie_m4.upload.maximum_size=1048576
+envie_m4.upload.maximum_data_size=294248
+
+envie_m4.debug.tool=gdb
+envie_m4.bootloader.tool=openocd
+envie_m4.bootloader.config=-f target/stm32h7x_dual_bank.cfg
+envie_m4.bootloader.programmer=-f interface/stlink.cfg
+envie_m4.bootloader.extra_action.preflash=stm32h7x option_write 0 0x01c 0xb86aaf0
+envie_m4.bootloader.file=PORTENTA_H7/portentah7_bootloader_mbed_hs_v2.elf
+
+##############################################################
+
+nano33ble.name=Arduino Nano 33 BLE
+nano33ble.build.core=arduino
+nano33ble.build.crossprefix=arm-none-eabi-
+nano33ble.build.compiler_path={runtime.tools.arm-none-eabi-gcc.path}/bin/
+
+nano33ble.build.variant=ARDUINO_NANO33BLE
+nano33ble.build.mcu=cortex-m4
+nano33ble.build.extra_flags=
+nano33ble.build.architecture=cortex-m4
+nano33ble.build.fpu=fpv4-sp-d16
+nano33ble.build.float-abi=softfp
+nano33ble.build.board=ARDUINO_NANO33BLE
+nano33ble.build.ldscript=linker_script.ld
+nano33ble.compiler.mbed.arch.define=-DARDUINO_ARCH_NRF52840
+nano33ble.compiler.mbed.defines={build.variant.path}/defines.txt
+nano33ble.compiler.mbed.ldflags={build.variant.path}/ldflags.txt
+nano33ble.compiler.mbed.cflags={build.variant.path}/cflags.txt
+nano33ble.compiler.mbed.cxxflags={build.variant.path}/cxxflags.txt
+nano33ble.compiler.mbed.includes={build.variant.path}/includes.txt
+nano33ble.compiler.mbed.extra_ldflags=-lstdc++ -lsupc++ -lm -lc -lgcc -lnosys
+nano33ble.compiler.mbed="{build.variant.path}/libs/libmbed.a" "{build.variant.path}/libs/libcc_310_core.a" "{build.variant.path}/libs/libcc_310_ext.a" "{build.variant.path}/libs/libcc_310_trng.a"
+nano33ble.vid.0=0x2341
+nano33ble.pid.0=0x005a
+nano33ble.vid.1=0x2341
+nano33ble.pid.1=0x805a
+
+nano33ble.upload.tool=bossac
+nano33ble.upload.protocol=
+nano33ble.upload.use_1200bps_touch=true
+nano33ble.upload.wait_for_upload_port=true
+nano33ble.upload.native_usb=true
+nano33ble.upload.maximum_size=983040
+nano33ble.upload.maximum_data_size=262144
+
+nano33ble.bootloader.tool=openocd
+nano33ble.bootloader.extra_action.preflash=echo INFO:removed_mass-erase
+nano33ble.bootloader.config=-f target/nrf52.cfg
+nano33ble.bootloader.programmer=-f interface/cmsis-dap.cfg
+nano33ble.bootloader.file=nano33ble/bootloader.hex
+
+
+##############################################################
+
+sfnrf52840pb.name=SparkFun MicroMod nRF52840 Processor Board
+sfnrf52840pb.build.core=arduino
+sfnrf52840pb.build.crossprefix=arm-none-eabi-
+sfnrf52840pb.build.compiler_path={runtime.tools.arm-none-eabi-gcc.path}/bin/
+
+sfnrf52840pb.build.variant=SF_MM_nRF52840_PB
+sfnrf52840pb.build.mcu=cortex-m4
+sfnrf52840pb.build.extra_flags=
+sfnrf52840pb.build.architecture=cortex-m4
+sfnrf52840pb.build.fpu=fpv4-sp-d16
+sfnrf52840pb.build.float-abi=softfp
+sfnrf52840pb.build.board=ARDUINO_NANO33BLE
+sfnrf52840pb.build.ldscript=linker_script.ld
+sfnrf52840pb.compiler.mbed.arch.define=-DARDUINO_ARCH_NRF52840
+sfnrf52840pb.compiler.mbed.defines={build.variant.path}/defines.txt
+sfnrf52840pb.compiler.mbed.ldflags={build.variant.path}/ldflags.txt
+sfnrf52840pb.compiler.mbed.cflags={build.variant.path}/cflags.txt
+sfnrf52840pb.compiler.mbed.cxxflags={build.variant.path}/cxxflags.txt
+sfnrf52840pb.compiler.mbed.includes={build.variant.path}/includes.txt
+sfnrf52840pb.compiler.mbed.extra_ldflags=-lstdc++ -lsupc++ -lm -lc -lgcc -lnosys
+sfnrf52840pb.compiler.mbed="{build.variant.path}/libs/libmbed.a" "{build.variant.path}/libs/libcc_310_core.a" "{build.variant.path}/libs/libcc_310_ext.a" "{build.variant.path}/libs/libcc_310_trng.a"
+sfnrf52840pb.vid.0=0x2341
+sfnrf52840pb.pid.0=0x005a
+sfnrf52840pb.vid.1=0x2341
+sfnrf52840pb.pid.1=0x805a
+
+sfnrf52840pb.upload.tool=bossac
+sfnrf52840pb.upload.protocol=
+sfnrf52840pb.upload.use_1200bps_touch=true
+sfnrf52840pb.upload.wait_for_upload_port=true
+sfnrf52840pb.upload.native_usb=true
+sfnrf52840pb.upload.maximum_size=983040
+sfnrf52840pb.upload.maximum_data_size=262144
+
+sfnrf52840pb.bootloader.tool=openocd
+sfnrf52840pb.bootloader.extra_action.preflash=echo INFO:removed_mass-erase
+sfnrf52840pb.bootloader.config=-f target/nrf52.cfg
+sfnrf52840pb.bootloader.programmer=-f interface/cmsis-dap.cfg
+sfnrf52840pb.bootloader.file=nano33ble/bootloader.hex
+
