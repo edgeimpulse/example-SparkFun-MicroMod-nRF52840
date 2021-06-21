@@ -69,16 +69,16 @@ void setup()
       while (1);
     }else{
       accel.setScale(LIS2DH12_2g);
-      Serial.print("Accelerometer scale: ");
-      Serial.println(accel.getScale());
+//      Serial.print("Accelerometer scale: ");
+//      Serial.println(accel.getScale());
 
       accel.setMode(LIS2DH12_LP_8bit);
-      Serial.print("Accelerometer mode: ");
-      Serial.println(accel.getMode());
+//      Serial.print("Accelerometer mode: ");
+//      Serial.println(accel.getMode());
 
       accel.setDataRate(LIS2DH12_ODR_100Hz);
-      Serial.print("Accelerometer data rate: ");
-      Serial.println(accel.getDataRate());
+//      Serial.print("Accelerometer data rate: ");
+//      Serial.println(accel.getDataRate());
     }
 
     if (!BLE.begin()) {   // initialize BLE
