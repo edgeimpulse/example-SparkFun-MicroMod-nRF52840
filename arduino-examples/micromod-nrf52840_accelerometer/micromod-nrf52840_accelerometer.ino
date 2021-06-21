@@ -45,7 +45,7 @@ void setup()
     // put your setup code here, to run once:
     Serial.begin(115200);
     delay(2000);
-    Serial.println("Edge Impulse Inferencing Demo \n using SparkFun MicroMod Machine Learning Carrier Board + nRF52840 Processor Board ");
+    Serial.println("Edge Impulse Inferencing Demo \nusing SparkFun MicroMod Machine Learning Carrier Board + nRF52840 Processor Board ");
 
     Serial.print("EI_CLASSIFIER_DSP_INPUT_FRAME_SIZE: ");
     Serial.println(EI_CLASSIFIER_DSP_INPUT_FRAME_SIZE);

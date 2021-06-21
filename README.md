@@ -16,6 +16,15 @@ This tutorial is using:
 - [Edge Impulse Studio](https://studio.edgeimpulse.com) and [Edge Impulse CLI](https://docs.edgeimpulse.com/docs/cli-installation)
 - [Arduino IDE](https://www.arduino.cc/en/software)
 
+### Overview 
+
+- [Installing the dependencies](#installing-the-dependencies)
+- [Collecting data](#collecting-data)
+- [Train your Machine Learning Model](#train-your-machine-learning-model)
+- [Run your inference on the target](#run-your-inference-on-the-target)
+- [Going further: Send your inference over BLE](#going-further-send-your-inference-over-ble)
+- [Resources](#resources)
+
 ## Installing the dependencies
 
 ### Install Arduino IDE
@@ -432,6 +441,45 @@ The name of the library may differ from the provided example, just delete this l
 You can now compile and upload the sketch on the target (using the ➡️ button on the upper left corner):
 
 ![inference](assets/inference.gif)
+
+
+## Going further: Send your inference over BLE
+
+If you want to go further and send your inference results over BLE (Bluetooth Low Energy), open the `inference-over-ble.ino` arduino sketch under `arduino-examples/inference-over-ble` folder.
+
+Compile the sketch and deploy it on your MicroMod processor. On the serial monitor, you will see something similar to this:
+
+```
+Edge Impulse Inferencing Demo 
+using SparkFun MicroMod Machine Learning Carrier Board + nRF52840 Processor Board 
+EI_CLASSIFIER_DSP_INPUT_FRAME_SIZE: 375
+EI_CLASSIFIER_INTERVAL_MS: 16
+Peripheral device MAC: af:81:ea:4a:aa:28
+Waiting for connections...```
+
+To connect to your board, you will need to install the `Nordic Semiconductors nRF Connect App`. Both Android and IOS versions exists:
+
+
+- [Google Play](https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp)
+- [App Store](https://itunes.apple.com/us/app/nrf-connect/id1054362403?ls=1&mt=8)
+
+Open the app and click on the scanner tab:
+
+<img src="assets/app-scanner.jpeg" width="200">
+
+Click on `Connect` on the TinyML-coach device.
+
+Wait few seconds, you should see the following view:
+
+<img src="assets/app-inference.jpeg" width="200">
+
+Click on the two button where you see the red boxes on the upper picture to receive updates as the inference results changes and to decode the payload.
+
+![ble-inference](assets/ble-inference.gif)
+
+Et voilà, you have reached the end of this tutorial 👏
+
+Thank you for having followed this tutorial. If you have any further questions, please ask them on Edge Impulse Forum: [https://forum.edgeimpulse.com](https://forum.edgeimpulse.com/). We will be happy to help you.
 
 
 

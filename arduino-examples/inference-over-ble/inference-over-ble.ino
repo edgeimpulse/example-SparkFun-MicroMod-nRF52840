@@ -26,9 +26,12 @@
 SPARKFUN_LIS2DH12 accel;       //Create instance
 
 #include <ArduinoBLE.h>
-BLEService inferenceService("180C");  // User defined service
-BLEStringCharacteristic inferenceCharacteristic("2A56",  // standard 16-bit characteristic UUID
-    BLERead | BLENotify, 512); // remote clients will be able to get notifications if this characteristic changes
+
+// User defined service, using python to generate uuid: 
+// >>> import uuid
+// >>> uuid.uuid5(uuid.NAMESPACE_DNS, 'edgeimpulse.com')
+BLEService inferenceService("2d0a515f-e0f7-5fc8-b50f-05e267afeb67");  
+BLEStringCharacteristic inferenceCharacteristic("2d0a515f-e0f7-5fc8-b50f-05e267afeb67", BLERead | BLENotify, 56); // remote clients will be able to get notifications if this characteristic changes
 
 /* Include Edge Impulse Library -------------------------------------------------------- 
  * Modify the following line according to your project name
@@ -50,7 +53,7 @@ void setup()
     // put your setup code here, to run once:
     Serial.begin(115200);
     delay(2000);
-    Serial.println("Edge Impulse Inferencing Demo \n using SparkFun MicroMod Machine Learning Carrier Board + nRF52840 Processor Board ");
+    Serial.println("Edge Impulse Inferencing Demo \nusing SparkFun MicroMod Machine Learning Carrier Board + nRF52840 Processor Board ");
 
     Serial.print("EI_CLASSIFIER_DSP_INPUT_FRAME_SIZE: ");
     Serial.println(EI_CLASSIFIER_DSP_INPUT_FRAME_SIZE);
@@ -195,18 +198,20 @@ void loop()
         ei_printf(": \n");
         for (size_t ix = 0; ix < EI_CLASSIFIER_LABEL_COUNT; ix++) {
             ei_printf("    %s: %.5f\n", result.classification[ix].label, result.classification[ix].value);
-            if(result.classification[ix].value >0.6 && inferenceResult != result.classification[ix].label){
+            if(result.classification[ix].value >0.7 && inferenceResult != result.classification[ix].label){
               inferenceResult = result.classification[ix].label;
               sendInferenceOverBLE(inferenceResult);
-            }
-            
+            } 
         }
+        Serial.print("Movement predicted: ");
+        Serial.println(inferenceResult);
+        
     }
     // when the central disconnects, turn off the LED:
     digitalWrite(LED_BUILTIN, LOW);
     Serial.print("Disconnected from central: ");
     Serial.println(central.address());
-    Serial.print("Switching off accelerometer... ");
+    Serial.print("Switching off accelerometer to save battery... ");
     accel.setDataRate(LIS2DH12_POWER_DOWN);
     Serial.println("Done");
   }
@@ -216,7 +221,7 @@ void loop()
 
 void sendInferenceOverBLE(String inferenceResult) {
      // when the central disconnects, turn off the LED:
-     Serial.print("Sending inference result over BLE: "); // print it
+     Serial.println("Sending inference result over BLE..."); // print it
      inferenceCharacteristic.writeValue(inferenceResult); // Write value
         
 }
