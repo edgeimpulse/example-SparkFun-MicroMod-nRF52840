@@ -11,6 +11,8 @@ This tutorial is using:
 - [Nordic NRF52840 MicroMod Processor Board](https://www.sparkfun.com/products/16984)
 ![nrf-processor](assets/nrf-processor.png)
 
+*For more details about the nRF52840 multiprotocol connectivity SoC, please see:* [https://www.nordicsemi.com/*Products/Low-power-short-range-wireless/nRF52840](https://www.nordicsemi.com/Products/Low-power-short-range-wireless/nRF52840)
+
 **Tools and Softwares:**
 
 - [Edge Impulse Studio](https://studio.edgeimpulse.com) and [Edge Impulse CLI](https://docs.edgeimpulse.com/docs/cli-installation)
@@ -22,7 +24,7 @@ This tutorial is using:
 - [Collecting data](#collecting-data)
 - [Train your Machine Learning Model](#train-your-machine-learning-model)
 - [Run your inference on the target](#run-your-inference-on-the-target)
-- [Going further: Send your inference over BLE](#going-further-send-your-inference-over-ble)
+- [Going further: Send your inference over Bluetooth](#going-further-send-your-inference-over-bluetooth)
 - [Resources](#resources)
 
 ## Installing the dependencies
@@ -443,9 +445,9 @@ You can now compile and upload the sketch on the target (using the ➡️ button
 ![inference](assets/inference.gif)
 
 
-## Going further: Send your inference over BLE
+## Going further: Send your inference over Bluetooth
 
-If you want to go further and send your inference results over BLE (Bluetooth Low Energy), open the `inference-over-ble.ino` arduino sketch under `arduino-examples/inference-over-ble` folder.
+If you want to go further and send your inference results over Bluetooth Low Energy, open the `inference-over-bluetooth.ino` arduino sketch under `arduino-examples/inference-over-bluetooth` folder.
 
 Compile the sketch and deploy it on your MicroMod processor. On the serial monitor, you will see something similar to this:
 

@@ -30,8 +30,8 @@ SPARKFUN_LIS2DH12 accel;       //Create instance
 // User defined service, using python to generate uuid: 
 // >>> import uuid
 // >>> uuid.uuid5(uuid.NAMESPACE_DNS, 'edgeimpulse.com')
-BLEService inferenceService("2d0a515f-e0f7-5fc8-b50f-05e267afeb67");  
-BLEStringCharacteristic inferenceCharacteristic("2d0a515f-e0f7-5fc8-b50f-05e267afeb67", BLERead | BLENotify, 56); // remote clients will be able to get notifications if this characteristic changes
+BLEService inferenceService("2d0a0000-e0f7-5fc8-b50f-05e267afeb67");  
+BLEStringCharacteristic inferenceCharacteristic("2d0a0001-e0f7-5fc8-b50f-05e267afeb67", BLERead | BLENotify, 56); // remote clients will be able to get notifications if this characteristic changes
 
 /* Include Edge Impulse Library -------------------------------------------------------- 
  * Modify the following line according to your project name
