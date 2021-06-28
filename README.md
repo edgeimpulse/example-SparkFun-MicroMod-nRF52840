@@ -4,6 +4,12 @@ This example has been designed for this workshop hosted by SparkFun: [AI Worksho
 
 This tutorial is using:
 
+**Tools and Softwares:**
+
+- [Edge Impulse Studio](https://studio.edgeimpulse.com) and [Edge Impulse CLI](https://docs.edgeimpulse.com/docs/cli-installation)
+- [Arduino IDE](https://www.arduino.cc/en/software)
+- Nordic Semiconductors nRF Connect App: [Google Play](https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp) or [App Store](https://itunes.apple.com/us/app/nrf-connect/id1054362403?ls=1&mt=8)
+
 **Hardware:**
 
 - [SparkFun MicroMod Machine Learning Carrier Board](https://www.sparkfun.com/products/16400)
@@ -12,11 +18,6 @@ This tutorial is using:
 ![nrf-processor](assets/nrf-processor.png)
 
 *For more details about the nRF52840 multiprotocol connectivity SoC, please see:* [https://www.nordicsemi.com/*Products/Low-power-short-range-wireless/nRF52840](https://www.nordicsemi.com/Products/Low-power-short-range-wireless/nRF52840)
-
-**Tools and Softwares:**
-
-- [Edge Impulse Studio](https://studio.edgeimpulse.com) and [Edge Impulse CLI](https://docs.edgeimpulse.com/docs/cli-installation)
-- [Arduino IDE](https://www.arduino.cc/en/software)
 
 ### Overview 
 
