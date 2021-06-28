@@ -24,9 +24,8 @@
 #include <Wire.h>
 #include "SparkFun_LIS2DH12.h" //Click here to get the library: http://librarymanager/All#SparkFun_LIS2DH12
 SPARKFUN_LIS2DH12 accel;       //Create instance
-
 #include <ArduinoBLE.h>
-
+#define  DEBUG_FLAG 0 // Flag to control Serial debugging messages
 // User defined service, using python to generate uuid: 
 // >>> import uuid
 // >>> uuid.uuid5(uuid.NAMESPACE_DNS, 'edgeimpulse.com')
@@ -41,7 +40,6 @@ BLEStringCharacteristic inferenceCharacteristic("2d0a0001-e0f7-5fc8-b50f-05e267a
  */
  #include <Fitness_classifier_inferencing.h>
 
-
 /* Private variables ------------------------------------------------------- */
 static bool debug_nn = false; // Set this to true to see e.g. features generated from the raw signal
 
@@ -53,14 +51,13 @@ void setup()
     // put your setup code here, to run once:
     Serial.begin(115200);
     delay(2000);
-    Serial.println("Edge Impulse Inferencing Demo \nusing SparkFun MicroMod Machine Learning Carrier Board + nRF52840 Processor Board ");
-
+#if (DEBUG_FLAG==1)
+    Serial.println("Edge Impulse Inferencing Demo \nusing SparkFun MicroMod Machine Learning Carrier Board + nRF52840 Processor Board");
     Serial.print("EI_CLASSIFIER_DSP_INPUT_FRAME_SIZE: ");
     Serial.println(EI_CLASSIFIER_DSP_INPUT_FRAME_SIZE);
-
     Serial.print("EI_CLASSIFIER_INTERVAL_MS: ");
     Serial.println(EI_CLASSIFIER_INTERVAL_MS);
-
+#endif
     Wire.begin();
 
     if (accel.begin() == false)
@@ -69,16 +66,17 @@ void setup()
       while (1);
     }else{
       accel.setScale(LIS2DH12_2g);
-//      Serial.print("Accelerometer scale: ");
-//      Serial.println(accel.getScale());
-
       accel.setMode(LIS2DH12_LP_8bit);
-//      Serial.print("Accelerometer mode: ");
-//      Serial.println(accel.getMode());
-
       accel.setDataRate(LIS2DH12_ODR_100Hz);
-//      Serial.print("Accelerometer data rate: ");
-//      Serial.println(accel.getDataRate());
+
+#if (DEBUG_FLAG==1)
+      Serial.print("Accelerometer scale: ");
+      Serial.println(accel.getScale());
+      Serial.print("Accelerometer mode: ");
+      Serial.println(accel.getMode());
+      Serial.print("Accelerometer data rate: ");
+      Serial.println(accel.getDataRate());    
+#endif
     }
 
     if (!BLE.begin()) {   // initialize BLE
@@ -86,16 +84,23 @@ void setup()
       while (1);
     }
 
-    BLE.setLocalName("TinyML-coach");  // Set name for connection
+    BLE.setLocalName("TinyML-coach");  // Set device name 
+    //Set the minimum and maximum desired connection intervals in units of 1.25 ms.
+    //Bluetooth LE desired connection Interval 200ms - 250ms. Central has the final word! 
+    BLE.setConnectionInterval(160, 200);
     BLE.setAdvertisedService(inferenceService); // Advertise service
     inferenceService.addCharacteristic(inferenceCharacteristic); // Add characteristic to service
     BLE.addService(inferenceService); // Add service
     inferenceCharacteristic.writeValue("inference"); // Set first value string
-  
+    //Set the advertising interval in units of 0.625 ms
+    //Bluetooth LE advertising interval around 50ms
+    BLE.setAdvertisingInterval(80);
     BLE.advertise();  // Start advertising
+#if (DEBUG_FLAG==1)
     Serial.print("Peripheral device MAC: ");
     Serial.println(BLE.address());
     Serial.println("Waiting for connections...");
+#endif
 }
 
 /**
@@ -104,6 +109,10 @@ void setup()
 * @param[in]  format     Variable argument list
 */
 void ei_printf(const char *format, ...) {
+
+#if (DEBUG_FLAG==0)
+  return;
+#endif
    static char print_buf[1024] = { 0 };
 
    va_list args;
@@ -118,30 +127,27 @@ void ei_printf(const char *format, ...) {
 
 /**
 * @brief      Get data and run inferencing
-*
-* @param[in]  debug  Get debug info if true
 */
 void loop()
 {   
 
     // wait for a BLE central
   BLEDevice central = BLE.central();
-
   String inferenceResult = "";
 
   // if a central is connected to the peripheral:
-  if (central) {
-    Serial.print("Connected to central: ");
-    // print the central's BT address:
-    Serial.println(central.address());
+  if (central.discoverAttributes()) {
     // turn on the LED to indicate the connection:
     digitalWrite(LED_BUILTIN, HIGH);
-
-    Serial.print("Switching on accelerometer... ");
+#if (DEBUG_FLAG==1)
+  // print the central's BT address:
+  Serial.print("Connected to central: ");
+  Serial.println(central.address());
+  Serial.print("Switching on accelerometer... ");
+#endif
+  //Switch on accelerometer
     accel.setDataRate(LIS2DH12_ODR_100Hz);
-    Serial.println("Done");
 
-    // check the battery level every 200ms
     // while the central is connected:
     while (central.connected()) {
         ei_printf("\n ---------------- \n Starting inferencing...\n");   
@@ -203,25 +209,31 @@ void loop()
               sendInferenceOverBLE(inferenceResult);
             } 
         }
+#if (DEBUG_FLAG==1)
         Serial.print("Movement predicted: ");
         Serial.println(inferenceResult);
+#endif
         
     }
     // when the central disconnects, turn off the LED:
     digitalWrite(LED_BUILTIN, LOW);
+#if (DEBUG_FLAG==1)
     Serial.print("Disconnected from central: ");
     Serial.println(central.address());
     Serial.print("Switching off accelerometer to save battery... ");
+#endif
+  //Switch off accelerometer
     accel.setDataRate(LIS2DH12_POWER_DOWN);
-    Serial.println("Done");
   }
     
     
-}
+} //end of loop
 
 void sendInferenceOverBLE(String inferenceResult) {
-     // when the central disconnects, turn off the LED:
-     Serial.println("Sending inference result over BLE..."); // print it
+  
+#if (DEBUG_FLAG==1)
+     Serial.println("Sending inference result over BLE..."); // print it to serial consle 
+#endif
      inferenceCharacteristic.writeValue(inferenceResult); // Write value
         
 }
