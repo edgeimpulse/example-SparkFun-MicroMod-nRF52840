@@ -2,7 +2,7 @@
 
 This example has been designed for this workshop hosted by SparkFun: [AI Workshop: Meet Your New Fitness Trainer](https://learn.sparkfun.com/events/204_).
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/qdzPTzL7ChI?start=269" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Youtube video](http://img.youtube.com/vi/qdzPTzL7ChI/0.jpg)](https://youtu.be/qdzPTzL7ChI)
 
 
 
