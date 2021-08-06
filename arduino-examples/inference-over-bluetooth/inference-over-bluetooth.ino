@@ -24,7 +24,7 @@
 #include <Wire.h>
 #include "SparkFun_LIS2DH12.h" //Click here to get the library: http://librarymanager/All#SparkFun_LIS2DH12
 SPARKFUN_LIS2DH12 accel;       //Create instance
-#include <ArduinoBLE.h>
+#include <ArduinoBLE.h>        //Click here to get the library: http://librarymanager/All#ArduinoBLE 
 #define  DEBUG_FLAG 0 // Flag to control Serial debugging messages
 // User defined service, using python to generate uuid: 
 // >>> import uuid
@@ -86,7 +86,7 @@ void setup()
 
     BLE.setLocalName("TinyML-coach");  // Set device name 
     //Set the minimum and maximum desired connection intervals in units of 1.25 ms.
-    //Bluetooth LE desired connection Interval 200ms - 250ms. Central has the final word! 
+    //Bluetooth LE desired connection Interval 160ms - 200ms. Central has the final word! 
     BLE.setConnectionInterval(160, 200);
     BLE.setAdvertisedService(inferenceService); // Advertise service
     inferenceService.addCharacteristic(inferenceCharacteristic); // Add characteristic to service

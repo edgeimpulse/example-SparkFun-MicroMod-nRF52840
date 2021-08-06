@@ -1,8 +1,10 @@
-# example-SparkFun-MicroMod-nRF52840
+# Workshop using SparkFun MicroMod nRF52840
 
 This example has been designed for this workshop hosted by SparkFun: [AI Workshop: Meet Your New Fitness Trainer](https://learn.sparkfun.com/events/204_).
 
-This tutorial is using:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qdzPTzL7ChI?start=269" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
 
 **Tools and Softwares:**
 
